@@ -1,0 +1,42 @@
+<MainScreen>:
+    MDBoxLayout:
+        orientation: 'vertical'
+        spacing: dp(10)
+        padding: dp(10)
+
+        MDTopAppBar:
+            title: "IPTV Forge AI Pro"
+            elevation: 4
+            left_action_items: [["menu", lambda x: None]]
+
+        MDTextField:
+            id: url_field
+            hint_text: "Вставь URL плейлиста (например https://...)"
+            multiline: False
+            size_hint_x: 1
+            mode: "rectangle"
+
+        MDRaisedButton:
+            text: "📥 ЗАГРУЗИТЬ ПЛЕЙЛИСТ"
+            on_release: root.load_playlist()
+            size_hint_x: 1
+            md_bg_color: 0.2, 0.6, 1, 1
+
+        MDRaisedButton:
+            text: "🚀 ИИ-ОЧИСТКА (дубли + мёртвые)"
+            on_release: root.ai_clean()
+            size_hint_x: 1
+            md_bg_color: 1, 0.4, 0, 1
+
+        MDDataTable:
+            id: table
+            size_hint_y: 1
+            check: False
+            column_data: [("Название канала", dp(280)), ("Группа", dp(180))]
+            row_data: []
+            on_row_press: root.play_channel(self, row)
+
+        MDLabel:
+            text: "❤️ Избранное и редактирование — скоро в следующей версии"
+            halign: "center"
+            theme_text_color: "Secondary"
