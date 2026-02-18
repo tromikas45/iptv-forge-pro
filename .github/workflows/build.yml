@@ -16,7 +16,8 @@ jobs:
 
       - name: Build APK
         run: |
-          buildozer -v android debug
+          chown -R root:root /github/workspace
+          yes | buildozer --allow-root -v android debug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
